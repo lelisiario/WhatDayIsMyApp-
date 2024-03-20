@@ -3,7 +3,16 @@
 // in the html.
 
 $(function () {
+  $('.saveBtn').on('click', function () {
+    // Get the description from the corresponding textarea
+    var description = $(this).siblings('.description').val();
+    // Get the hour id from the parent time-block
+    var hourId = $(this).parent().attr('id');
+    // Save the description in local storage with the hour id as the key
+    localStorage.setItem(hourId, description);
+  });
 
+  
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -20,7 +29,7 @@ $(function () {
   // current hour in 24-hour time?
 
   // Display the current date in the header
-  $('#currentDay').text(dayjs().format('dddd, MMMM D'));
+  $('#currentDay').text(dayjs().format('dddd, MMMM D, YYYY, h:mm:ss a'));
 
   // Apply initial class based on current time
   updateTimeBlocks();
@@ -30,6 +39,7 @@ $(function () {
 
   // Update time blocks every minute
   setInterval(updateTimeBlocks, 60000);
+
 
 
   // TODO: Add code to get any user input that was saved in localStorage and set
