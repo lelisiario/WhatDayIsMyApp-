@@ -71,4 +71,26 @@ $(function () {
 
   // TODO: Add code to display the current date in the header of the page.
   // Listener for click events on the save button
+  $(function () {
+
+    // Function to fetch time information from Unix Time API
+    function updateTimeFromUnixTimeAPI() {
+      // Make a GET request to the Unix Time API
+      $.get('https://showcase.api.linx.twenty57.net/UnixTime/tounixtimestamp?datetime=now', function (data) {
+        // Extract the timestamp from the response
+        var unixTimestamp = data['UnixTimeStamp'];
+        // Convert the timestamp to a JavaScript Date object
+        var date = new Date(unixTimestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
+        // Update the element on your webpage with the current time
+        $('#currentUnixTime').text(date.toLocaleString());
+      });
+    }
+  
+    // Update time from Unix Time API initially
+    updateTimeFromUnixTimeAPI();
+  
+    // Update time from Unix Time API every minute
+    setInterval(updateTimeFromUnixTimeAPI, 60000);
+  
+  });
 });
