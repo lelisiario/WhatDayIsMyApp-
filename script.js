@@ -48,6 +48,8 @@ $(function () {
 
   // Function to fetch time information from Unix Time API
   function updateTimeFromUnixTimeAPI() {
+      // Update the element on your webpage with the current time using dayjs
+      $('#UnixTime').text(dayjs().format('YYYY-MM-DD HH:mm:ss'));
     // Make a GET request to the Unix Time API
     $.get('https://showcase.api.linx.twenty57.net/UnixTime/tounixtimestamp?datetime=now', function (data) {
       // Extract the timestamp from the response
