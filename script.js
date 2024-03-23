@@ -34,9 +34,10 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  // Function to get user input saved in localStorage and set textarea values
+
+  //Function to get user input saved in localStorage and set textarea values
   function displaySavedDescriptions() {
-    $('.time-block').each(function () {
+   $('.time-block').each(function () {
       var hourId = $(this).attr('id');
       var description = localStorage.getItem(hourId);
       $(this).find('.description').val(description);
@@ -82,15 +83,16 @@ $(function () {
         // Convert the timestamp to a JavaScript Date object
         var date = new Date(unixTimestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
         // Update the element on your webpage with the current time
-        $('#currentUnixTime').text(date.toLocaleString());
+        $('#UnixTime').text(date.toLocaleString());
+        return unixTimestamp;
       });
     }
   
     // Update time from Unix Time API initially
     updateTimeFromUnixTimeAPI();
   
-    // Update time from Unix Time API every minute
-    setInterval(updateTimeFromUnixTimeAPI, 60000);
-  
+    // Update time from Unix Time API every second
+    setInterval();
+    1000
   });
 });
