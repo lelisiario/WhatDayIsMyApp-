@@ -1,7 +1,6 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-
 $(function () {
   
   $('.saveBtn').on('click', function () {
@@ -50,6 +49,7 @@ $(function () {
   function updateTimeFromUnixTimeAPI() {
       // Update the element on your webpage with the current time using dayjs
       $('#UnixTime').text(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+      $('#currentDay').text(dayjs().format('dddd, MMMM D, YYYY, h:mm:ss a'));
     // Make a GET request to the Unix Time API
     $.get('https://showcase.api.linx.twenty57.net/UnixTime/tounixtimestamp?datetime=now', function (data) {
       // Extract the timestamp from the response
@@ -58,10 +58,11 @@ $(function () {
       var date = new Date(unixTimestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
       // Update the element on your webpage with the current time
       $('#UnixTime').text(date.toLocaleString());
+      $('currentDay').text(date.toLocaleString());
     });
   }
 
-  // Update time from Unix Time API every second
+  // // Update time from Unix Time API every second
   setInterval(updateTimeFromUnixTimeAPI, 1000);
 
 });
